@@ -37,13 +37,13 @@ ns -h
 This will display help for the tool. Here are the options it supports.
 
 ```console
-NucleiScanner is a Powerful Automation tool for detecting XSS, SQLi, SSRF, Open-Redirect, etc. vulnerabilities in Web Applications
+NucleiScanner is a Powerful Automation tool for detecting Unknown Vulnerabilities in Web Applications
 
 Usage: /usr/bin/ns [options]
 
 Options:
   -h, --help              Display help information
-  -d, --domain <domain>   Domain to scan for XSS, SQLi, SSRF, Open-Redirect..etc vulnerabilities
+  -d, --domain <domain>   Domain to scan for Unknown Vulnerabilities
   -f, --file <filename>   File containing multiple domains/URLs to scan
 ```  
 
