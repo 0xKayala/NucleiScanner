@@ -52,7 +52,7 @@ Options:
 To install `NucleiScanner`, follow these steps:
 
 ```
-git clone https://github.com/0xKayala/NucleiScanner.git && cd NucleiScanner && sudo chmod +x install.sh && ./install.sh && nf -h && cd ..
+git clone https://github.com/0xKayala/NucleiScanner.git && cd NucleiScanner && sudo chmod +x install.sh && ./install.sh && ns -h && cd ..
 ```
 
 ## Examples:
