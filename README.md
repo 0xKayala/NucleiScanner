@@ -22,7 +22,7 @@
 [Nuclei Templates](https://github.com/0xKayala/nuclei-templates) `git clone https://github.com/0xKayala/nuclei-templates.git`
 
 ## Screenshot
-![image](https://github.com/0xKayala/NucleiScanner/assets/16838353/d29d18e2-e5b4-4f5f-b1fd-351167fa7c31)
+![image](https://github.com/0xKayala/NucleiScanner/assets/16838353/a015b1f3-d8ef-4291-b7a5-7f6512904e83)
 
 
 ## Output
