@@ -115,7 +115,7 @@ fi
 # Step 3: Get the vulnerable parameters based on user input
 if [ -n "$domain" ]; then
     echo "Running ParamSpider on $domain"
-    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$param.yaml"
+    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$domain.yaml"
 elif [ -n "$filename" ]; then
     echo "Running ParamSpider on URLs from $filename"
     while IFS= read -r line; do
@@ -126,14 +126,14 @@ fi
 
 # Step 4: Combine URLs collected by ParamSpider and gauplus
 if [ -f "output/gauplus.yaml" ]; then
-    cat "output/$param.yaml" "output/gauplus.yaml" > "output/allurls.yaml"
+    cat "output/$domain.yaml" "output/gauplus.yaml" > "output/allurls.yaml"
     urls_file="output/allurls.yaml"
 else
-    urls_file="output/$param.yaml"
+    urls_file="output/$domain.yaml"
 fi
 
 # Step 5: Check whether URLs were collected or not
-if [ ! -s "output/$param.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
+if [ ! -s "output/$domain.yaml" ] && [ ! -s "output/gauplus.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
     echo "No URLs Found. Exiting..."
     exit 1
 fi
