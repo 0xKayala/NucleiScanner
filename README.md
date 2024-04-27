@@ -17,7 +17,7 @@
 ### Tools included:
 [Nuclei](https://github.com/projectdiscovery/nuclei) `git clone https://github.com/projectdiscovery/nuclei.git`<br><br>
 [Subfinder](https://github.com/projectdiscovery/subfinder) `git clone https://github.com/projectdiscovery/subfinder.git`<br><br>
-[Gau](https://github.com/bp0lr/Gau) `git clone https://github.com/bp0lr/Gau.git`<br><br>
+[Gau](https://github.com/lc/gau) `git clone https://github.com/lc/gau.git`<br><br>
 [ParamSpider](https://github.com/0xKayala/ParamSpider) `git clone https://github.com/0xKayala/ParamSpider.git`<br><br>
 [httpx](https://github.com/projectdiscovery/httpx) `git clone https://github.com/projectdiscovery/httpx.git`
 
