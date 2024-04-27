@@ -11,7 +11,7 @@
 
 `NucleiScanner` is an automation tool that combines `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` and `httpx` functionality to enhance web application security testing. It uses `Subfinder` to collect subdomains, `Gauplus` to collect URLs by filtering unwanted extensions `ParamSpider` to identify potential entry points and `Nuclei Scanning templates` to scan for vulnerabilities. `NucleiScanner` streamlines the process, making it easier for security professionals and web developers to detect and address security risks efficiently. Download `NucleiScanner` to protect your web applications from vulnerabilities and attacks.
 
-**Note:** `Nuclei` + `Paramspider` = `NucleiScanner` <br><br>
+**Note:** `Nuclei` + `Subfinder` + `Gauplus` + `Paramspider` + `httpx` = `NucleiScanner` <br><br>
 **Important:** Make sure the tools `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` & `httpx` are installed on your machine and executing correctly to use the `NucleiScanner` without any issues.
 
 ### Tools included:
