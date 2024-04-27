@@ -126,6 +126,7 @@ fi
 
 # Step 4: Combine URLs collected by ParamSpider and gauplus
 if [ -f "output/gauplus.yaml" ]; then
+    echo "Combining URLs collected by ParamSpider and gauplus"
     cat "output/$domain.yaml" "output/gauplus.yaml" > "output/allurls.yaml"
     urls_file="output/allurls.yaml"
 else
@@ -139,7 +140,7 @@ if [ ! -s "output/$domain.yaml" ] && [ ! -s "output/gauplus.yaml" ] && [ ! -s "o
 fi
 
 # Step 6: Run the Nuclei Scanning templates on the collected URLs
-echo "Running Nuclei on collected URLs"
+echo "Running Nuclei on Collected URLs"
 if [ -n "$domain" ]; then
     # Use a temporary file to store the sorted and unique URLs
     temp_file=$(mktemp)
