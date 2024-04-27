@@ -83,7 +83,7 @@ For a Practical Demonstration of the NucleiScanner tool see the below video 👇
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=0xKayala/NucleiFuzzer&type=Date)](https://star-history.com/#0xKayala/NucleiFuzzer&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=0xKayala/NucleiScanner&type=Date)](https://star-history.com/#0xKayala/NucleiScanner&Date)
 
 ## Contributing
 
