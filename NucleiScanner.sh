@@ -109,7 +109,7 @@ fi
 # Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
 if [ -f "output/sub.yaml" ]; then
     echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gauplus"
-    cat "output/sub.yaml" | gauplus -subs -b "$excluded_extentions" -o "output/gauplus.yaml"
+    gauplus -subs -b "$excluded_extentions" -o "output/gauplus.yaml" < "output/sub.yaml" >/dev/null 2>&1
 fi
 
 # Step 3: Get the vulnerable parameters based on user input
