@@ -103,38 +103,38 @@ fi
 # Step 1: Collect subdomains using subfinder
 if [ -n "$domain" ]; then
     echo "Collecting subdomains using subfinder"
-    subfinder -d "$domain" -all -o "output/sub.yaml" -silent
+    subfinder -d "$domain" -all -o "output/sub.txt" -silent
 fi
 
 # Step 2: Collecting URLs by Filtering out unwanted extensions using gau
-if [ -f "output/sub.yaml" ]; then
-    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gau"
-    cat "output/sub.yaml" | gau --subs --blacklist "$excluded_extentions" --o "output/gau.yaml"
+if [ -f "output/sub.txt" ]; then
+    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.txt' using gau"
+    cat "output/sub.txt" | gau --subs --blacklist "$excluded_extentions" --o "output/gau.txt"
 fi
 
 # Step 3: Get the vulnerable parameters based on user input
 if [ -n "$domain" ]; then
     echo "Running ParamSpider on $domain"
-    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$domain.yaml"
+    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$domain.txt"
 elif [ -n "$filename" ]; then
     echo "Running ParamSpider on URLs from $filename"
     while IFS= read -r line; do
-        python3 "$home_dir/ParamSpider/paramspider.py" -d "$line" --exclude "$excluded_extentions" --level high --quiet -o "output/$line.yaml"
-        cat "output/$line.yaml" >> "$output_file"  # Append to the combined output file
+        python3 "$home_dir/ParamSpider/paramspider.py" -d "$line" --exclude "$excluded_extentions" --level high --quiet -o "output/$line.txt"
+        cat "output/$line.txt" >> "$output_file"  # Append to the combined output file
     done < "$filename"
 fi
 
 # Step 4: Combine URLs collected by ParamSpider and gau
-if [ -f "output/gau.yaml" ]; then
+if [ -f "output/gau.txt" ]; then
     echo "Combining URLs collected by ParamSpider and gau"
-    cat "output/$domain.yaml" "output/gau.yaml" > "output/allurls.yaml"
-    urls_file="output/allurls.yaml"
+    cat "output/$domain.txt" "output/gau.txt" > "output/allurls.txt"
+    urls_file="output/allurls.txt"
 else
-    urls_file="output/$domain.yaml"
+    urls_file="output/$domain.txt"
 fi
 
 # Step 5: Check whether URLs were collected or not
-if [ ! -s "output/$domain.yaml" ] && [ ! -s "output/gau.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
+if [ ! -s "output/$domain.txt" ] && [ ! -s "output/gau.txt" ] && [ ! -s "output/allurls.txt" ]; then
     echo "No URLs Found. Exiting..."
     exit 1
 fi
