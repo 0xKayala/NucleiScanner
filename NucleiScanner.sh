@@ -31,7 +31,19 @@ display_help() {
 # Get the current user's home directory
 home_dir=$(eval echo ~"$USER")
 
-excluded_extentions="png,jpg,gif,jpeg,swf,woff,svg,pdf,json,css,js,webp,woff,woff2,eot,ttf,otf,mp4,txt"
+excluded_extentions="png,jpg,gif,jpeg,swf,woff,svg,pdf,css,webp,woff,woff2,eot,ttf,otf,mp4"
+
+# Check if subfinder is installed, if not, install it
+if ! command -v subfinder -up &> /dev/null; then
+    echo "Installing Subfinder..."
+    go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+fi
+
+# Check if gauplus is installed, if not, install it
+if ! command -v gauplus &> /dev/null; then
+    echo "Installing Gauplus..."
+    go install -v github.com/bp0lr/gauplus@latest
+fi
 
 # Check if ParamSpider is already cloned and installed
 if [ ! -d "$home_dir/ParamSpider" ]; then
@@ -82,19 +94,28 @@ do
     esac
 done
 
-# Step 2: Ask the user to enter the domain name or specify the file
+# Step 0: Ask the user to enter the domain name or specify the file
 if [ -z "$domain" ] && [ -z "$filename" ]; then
     echo "Please provide a domain with -d or a file with -f option."
     display_help
 fi
 
-# Combined output file for all domains
-output_file="output/allurls.yaml"
+# Step 1: Collect subdomains using subfinder
+if [ -n "$domain" ]; then
+    echo "Collecting subdomains using subfinder"
+    subfinder -silent -d "$domain" -all -o "output/sub.yaml"
+fi
+
+# Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
+if [ -f "output/subdomains.yaml" ]; then
+    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gauplus"
+    cat "output/sub.yaml" | gauplus -subs -b "$excluded_extentions" -o "output/gauplus.yaml"
+fi
 
 # Step 3: Get the vulnerable parameters based on user input
 if [ -n "$domain" ]; then
     echo "Running ParamSpider on $domain"
-    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$domain.yaml"
+    python3 "$home_dir/ParamSpider/paramspider.py" -d "$domain" --exclude "$excluded_extentions" --level high --quiet -o "output/$param.yaml"
 elif [ -n "$filename" ]; then
     echo "Running ParamSpider on URLs from $filename"
     while IFS= read -r line; do
@@ -103,25 +124,33 @@ elif [ -n "$filename" ]; then
     done < "$filename"
 fi
 
-# Step 4: Check whether URLs were collected or not
-if [ ! -s "output/$domain.yaml" ] && [ ! -s "$output_file" ]; then
+# Step 4: Combine URLs collected by ParamSpider and gauplus
+if [ -f "output/gauplus.yaml" ]; then
+    cat "output/$param.yaml" "output/gauplus.yaml" > "output/allurls.yaml"
+    urls_file="output/allurls.yaml"
+else
+    urls_file="output/$param.yaml"
+fi
+
+# Step 5: Check whether URLs were collected or not
+if [ ! -s "output/$param.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
     echo "No URLs Found. Exiting..."
     exit 1
 fi
 
-# Step 5: Run the Nuclei Scanning templates on the collected URLs
+# Step 6: Run the Nuclei Scanning templates on the collected URLs
 echo "Running Nuclei on collected URLs"
 if [ -n "$domain" ]; then
     # Use a temporary file to store the sorted and unique URLs
     temp_file=$(mktemp)
-    sort "output/$domain.yaml" | uniq > "$temp_file"
+    sort "$urls_file" | uniq > "$temp_file"
     httpx -silent -mc 200,301,302,403 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 05
     rm -r "$temp_file"  # Remove the temporary file
 elif [ -n "$filename" ]; then
-    sort "$output_file" | uniq > "$temp_file"
+    sort "$urls_file" | uniq > "$temp_file"
     httpx -silent -mc 200,301,302,403 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 05
     rm -r "$temp_file"  # Remove the temporary file
 fi
 
-# Step 6: End with a general message as the scan is completed
-echo "Scan is completed - Happy Scanning"
+# Step 7: End with a general message as the scan is completed
+echo "Scan is completed - Happy Hunting"
