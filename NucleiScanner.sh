@@ -39,10 +39,10 @@ if ! command -v subfinder -up &> /dev/null; then
     go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 fi
 
-# Check if gauplus is installed, if not, install it
-if ! command -v gauplus &> /dev/null; then
-    echo "Installing Gauplus..."
-    go install -v github.com/bp0lr/gauplus@latest
+# Check if Gau is installed, if not, install it
+if ! command -v gau &> /dev/null; then
+    echo "Installing Gau..."
+    go install -v github.com/lc/gau/v2/cmd/gau@latest
 fi
 
 # Check if ParamSpider is already cloned and installed
@@ -106,10 +106,10 @@ if [ -n "$domain" ]; then
     subfinder -d "$domain" -all -o "output/sub.yaml" -silent
 fi
 
-# Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
+# Step 2: Collecting URLs by Filtering out unwanted extensions using gau
 if [ -f "output/sub.yaml" ]; then
-    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gauplus"
-    cat "output/sub.yaml" | gauplus -subs -b "$excluded_extentions" -o "output/gauplus.yaml"
+    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gau"
+    cat "output/sub.yaml" | gau --subs --blacklist "$excluded_extentions" --o "output/gau.yaml"
 fi
 
 # Step 3: Get the vulnerable parameters based on user input
@@ -124,17 +124,17 @@ elif [ -n "$filename" ]; then
     done < "$filename"
 fi
 
-# Step 4: Combine URLs collected by ParamSpider and gauplus
-if [ -f "output/gauplus.yaml" ]; then
-    echo "Combining URLs collected by ParamSpider and gauplus"
-    cat "output/$domain.yaml" "output/gauplus.yaml" > "output/allurls.yaml"
+# Step 4: Combine URLs collected by ParamSpider and gau
+if [ -f "output/gau.yaml" ]; then
+    echo "Combining URLs collected by ParamSpider and gau"
+    cat "output/$domain.yaml" "output/gau.yaml" > "output/allurls.yaml"
     urls_file="output/allurls.yaml"
 else
     urls_file="output/$domain.yaml"
 fi
 
 # Step 5: Check whether URLs were collected or not
-if [ ! -s "output/$domain.yaml" ] && [ ! -s "output/gauplus.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
+if [ ! -s "output/$domain.yaml" ] && [ ! -s "output/gau.yaml" ] && [ ! -s "output/allurls.yaml" ]; then
     echo "No URLs Found. Exiting..."
     exit 1
 fi
