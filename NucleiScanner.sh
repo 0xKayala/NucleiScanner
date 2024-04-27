@@ -107,7 +107,7 @@ if [ -n "$domain" ]; then
 fi
 
 # Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
-if [ -f "output/subdomains.yaml" ]; then
+if [ -f "output/sub.yaml" ]; then
     echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.yaml' using gauplus"
     cat "output/sub.yaml" | gauplus -subs -b "$excluded_extentions" -o "output/gauplus.yaml"
 fi
