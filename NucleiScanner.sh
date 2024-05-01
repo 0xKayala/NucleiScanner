@@ -54,7 +54,7 @@ fi
 # Check if nuclei-templates is already cloned.
 if [ ! -d "$home_dir/nuclei-templates" ]; then
     echo "Cloning nuclei-templates..."
-    git clone https://github.com/0xKayala/nuclei-templates.git "$home_dir/nuclei-templates"
+    git clone https://github.com/projectdiscovery/nuclei-templates.git "$home_dir/nuclei-templates"
 fi
 
 # Check if nuclei is installed, if not, install it
