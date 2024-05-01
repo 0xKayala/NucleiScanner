@@ -23,7 +23,7 @@
 
 
 ### Templates:
-[Nuclei Templates](https://github.com/0xKayala/nuclei-templates) `git clone https://github.com/0xKayala/nuclei-templates.git`
+[Nuclei Templates](https://github.com/projectdiscovery/nuclei-templates) `git clone https://github.com/projectdiscovery/nuclei-templates.git`
 
 ## Screenshot
 ![image](https://github.com/0xKayala/NucleiScanner/assets/16838353/a015b1f3-d8ef-4291-b7a5-7f6512904e83)
@@ -79,7 +79,6 @@ Here are a few examples of how to use NucleiScanner:
 
 For a Practical Demonstration of the NucleiScanner tool see the below video 👇 <br>
 
-[<img src="https://img.youtube.com/vi/2K2gTCHt6kg/hqdefault.jpg" width="600" height="300"/>](https://www.youtube.com/embed/2K2gTCHt6kg)
 
 ## Star History
 
