@@ -154,4 +154,4 @@ elif [ -n "$filename" ]; then
 fi
 
 # Step 7: End with a general message as the scan is completed
-echo "Scan is completed - Happy Hunting"
+echo "Nuclei Scanning is completed - Happy Hunting"
