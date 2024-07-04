@@ -1,5 +1,5 @@
 <h1 align="center"> 
-  NucleiScanner = Nuclei + Subfinder + Gau + Paramspider + httpx
+  NucleiScanner = Nuclei + Subfinder + Gauplus + Paramspider + httpx
   <br>
 </h1>
 
@@ -9,15 +9,15 @@
 <a href="https://twitter.com/0xKayala"><img src="https://img.shields.io/twitter/follow/0xKayala.svg?logo=twitter"></a>
 </p>
 
-`NucleiScanner` is an automation tool that combines `Nuclei`, `Subfinder`, `Gau`, `Paramspider` and `httpx` functionality to enhance web application security testing. It uses `Subfinder` to collect subdomains, `Gau` to collect URLs by filtering unwanted extensions `ParamSpider` to identify potential entry points and `Nuclei Scanning templates` to scan for vulnerabilities. `NucleiScanner` streamlines the process, making it easier for security professionals and web developers to detect and address security risks efficiently. Download `NucleiScanner` to protect your web applications from vulnerabilities and attacks.
+`NucleiScanner` is an automation tool that combines `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` and `httpx` functionality to enhance web application security testing. It uses `Subfinder` to collect subdomains, `Gauplus` to collect URLs by filtering unwanted extensions `ParamSpider` to identify potential entry points and `Nuclei Scanning templates` to scan for vulnerabilities. `NucleiScanner` streamlines the process, making it easier for security professionals and web developers to detect and address security risks efficiently. Download `NucleiScanner` to protect your web applications from vulnerabilities and attacks.
 
-**Note:** `Nuclei` + `Subfinder` + `Gau` + `Paramspider` + `httpx` = `NucleiScanner` <br><br>
-**Important:** Make sure the tools `Nuclei`, `Subfinder`, `Gau`, `Paramspider` & `httpx` are installed on your machine and executing correctly to use the `NucleiScanner` without any issues.
+**Note:** `Nuclei` + `Subfinder` + `Gauplus` + `Paramspider` + `httpx` = `NucleiScanner` <br><br>
+**Important:** Make sure the tools `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` & `httpx` are installed on your machine and executing correctly to use the `NucleiScanner` without any issues.
 
 ### Tools included:
 [Nuclei](https://github.com/projectdiscovery/nuclei) `git clone https://github.com/projectdiscovery/nuclei.git`<br><br>
 [Subfinder](https://github.com/projectdiscovery/subfinder) `git clone https://github.com/projectdiscovery/subfinder.git`<br><br>
-[Gau](https://github.com/lc/gau) `git clone https://github.com/lc/gau.git`<br><br>
+[Gauplus](https://github.com/bp0lr/gauplus) `git clone https://github.com/bp0lr/gauplus.git`<br><br>
 [ParamSpider](https://github.com/0xKayala/ParamSpider) `git clone https://github.com/0xKayala/ParamSpider.git`<br><br>
 [httpx](https://github.com/projectdiscovery/httpx) `git clone https://github.com/projectdiscovery/httpx.git`
 
