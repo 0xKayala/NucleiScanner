@@ -103,7 +103,7 @@ fi
 # Step 1: Collect subdomains using subfinder
 if [ -n "$domain" ]; then
     echo "Collecting subdomains using subfinder"
-    subfinder -d "$domain" -all -o "output/sub.txt" -silent
+    subfinder -d "$domain" -all -silent -o "output/sub.txt"
 fi
 
 # Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
