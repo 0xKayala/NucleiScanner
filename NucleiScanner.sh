@@ -40,9 +40,9 @@ if ! command -v subfinder -up &> /dev/null; then
 fi
 
 # Check if Gau is installed, if not, install it
-if ! command -v gau &> /dev/null; then
-    echo "Installing Gau..."
-    go install -v github.com/lc/gau/v2/cmd/gau@latest
+if ! command -v gauplus &> /dev/null; then
+    echo "Installing Gauplus..."
+    go install -v github.com/bp0lr/gauplus@latest
 fi
 
 # Check if ParamSpider is already cloned and installed
@@ -106,10 +106,10 @@ if [ -n "$domain" ]; then
     subfinder -d "$domain" -all -o "output/sub.txt" -silent
 fi
 
-# Step 2: Collecting URLs by Filtering out unwanted extensions using gau
+# Step 2: Collecting URLs by Filtering out unwanted extensions using gauplus
 if [ -f "output/sub.txt" ]; then
-    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.txt' using gau"
-    cat "output/sub.txt" | gau --subs --blacklist "$excluded_extentions" --o "output/gau.txt"
+    echo "Collecting URLs by Filtering out unwanted extensions from 'output/sub.txt' using gauplus"
+    cat "output/sub.txt" | gauplus -b "$excluded_extentions" -o "output/gauplus.txt"
 fi
 
 # Step 3: Get the vulnerable parameters based on user input
@@ -124,17 +124,17 @@ elif [ -n "$filename" ]; then
     done < "$filename"
 fi
 
-# Step 4: Combine URLs collected by ParamSpider and gau
-if [ -f "output/gau.txt" ]; then
-    echo "Combining URLs collected by ParamSpider and gau"
-    cat "output/$domain.txt" "output/gau.txt" > "output/allurls.txt"
+# Step 4: Combine URLs collected by ParamSpider and gauplus
+if [ -f "output/gauplus.txt" ]; then
+    echo "Combining URLs collected by ParamSpider and gauplus"
+    cat "output/$domain.txt" "output/gauplus.txt" > "output/allurls.txt"
     urls_file="output/allurls.txt"
 else
     urls_file="output/$domain.txt"
 fi
 
 # Step 5: Check whether URLs were collected or not
-if [ ! -s "output/$domain.txt" ] && [ ! -s "output/gau.txt" ] && [ ! -s "output/allurls.txt" ]; then
+if [ ! -s "output/$domain.txt" ] && [ ! -s "output/gauplus.txt" ] && [ ! -s "output/allurls.txt" ]; then
     echo "No URLs Found. Exiting..."
     exit 1
 fi
