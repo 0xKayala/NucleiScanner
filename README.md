@@ -1,5 +1,5 @@
 <h1 align="center"> 
-  NucleiScanner = Nuclei + Subfinder + Gauplus + Paramspider + httpx
+  NucleiScanner = Nuclei + Subfinder + Gauplus + Paramspider + Nuclei Templates
   <br>
 </h1>
 
@@ -11,8 +11,8 @@
 
 `NucleiScanner` is an automation tool that combines `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` and `httpx` functionality to enhance web application security testing. It uses `Subfinder` to collect subdomains, `Gauplus` to collect URLs by filtering unwanted extensions `ParamSpider` to identify potential entry points and `Nuclei Scanning templates` to scan for vulnerabilities. `NucleiScanner` streamlines the process, making it easier for security professionals and web developers to detect and address security risks efficiently. Download `NucleiScanner` to protect your web applications from vulnerabilities and attacks.
 
-**Note:** `Nuclei` + `Subfinder` + `Gauplus` + `Paramspider` + `httpx` = `NucleiScanner` <br><br>
-**Important:** Make sure the tools `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` & `httpx` are installed on your machine and executing correctly to use the `NucleiScanner` without any issues.
+**Note:** `Nuclei` + `Subfinder` + `Gauplus` + `Paramspider` + `Nuclei Templates` = `NucleiScanner` <br><br>
+**Important:** Make sure the tools `Nuclei`, `Subfinder`, `Gauplus`, `Paramspider` & `Nuclei Templates` are installed on your machine and executing correctly to use the `NucleiScanner` without any issues.
 
 ### Tools included:
 [Nuclei](https://github.com/projectdiscovery/nuclei) `git clone https://github.com/projectdiscovery/nuclei.git`<br><br>
@@ -77,7 +77,7 @@ Here are a few examples of how to use NucleiScanner:
 
 ## Practical Demonstration:
 
-For a Practical Demonstration of the NucleiScanner tool see the below video 👇 <br>
+For a Practical Demonstration of the NucleiScanner tool, see the video below 👇 <br>
 
 
 ## Star History
