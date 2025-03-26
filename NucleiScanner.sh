@@ -138,7 +138,7 @@ collect_subdomains() {
     local target="$1"
     local output_file="$2"
     local validated_target=$(validate_input "$target") || return 1
-    echo -e "${RED}Collecting subdomains for $validated_target using Subfinder...${RESET}"
+    echo -e "${BLUE}Collecting subdomains for $validated_target using Subfinder...${RESET}"
     subfinder -d "$validated_target" -all -silent -o "$output_file"
 }
 
@@ -151,7 +151,7 @@ collect_urls() {
 
     log "INFO" "Starting URL collection for $validated_target..."
 
-    echo -e "${RED}Collecting URLs for $validated_target using ParamSpider...${RESET}"
+    echo -e "${GREEN}Collecting URLs for $validated_target using ParamSpider...${RESET}"
     python3 "$HOME_DIR/ParamSpider/paramspider.py" -d "$target" --exclude "$EXCLUDED_EXTENSIONS" --level high --quiet -o "$output_file.tmp" &&
     cat "$output_file.tmp" >> "$output_file" && rm -f "$output_file.tmp"
 
@@ -169,14 +169,14 @@ validate_urls() {
         log "ERROR" "No URLs found in $input_file."
         exit 1
     fi
-    echo -e "${RED}Deduplicating URLs from $input_file...${RESET}"
+    echo -e "${YELLOW}Deduplicating URLs from $input_file...${RESET}"
     sort -u "$input_file" | uro > "$output_file"
 }
 
 # Run Nuclei
 run_nuclei() {
     local url_file="$1"
-    echo -e "${RED}Running Nuclei on URLs from $url_file...${RESET}"
+    echo -e "${GREEN}Running Nuclei on URLs from $url_file...${RESET}"
     httpx -silent -mc 200,204,301,302,401,403,405,500,502,503,504 -l "$url_file" \
         | nuclei -t "$TEMPLATE_DIR" -es info -rl "$RATE_LIMIT" -o "$OUTPUT_FOLDER/nuclei_results.txt"
 }
