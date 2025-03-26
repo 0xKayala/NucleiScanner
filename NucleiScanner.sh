@@ -145,11 +145,11 @@ if [ -n "$domain" ]; then
     # Use a temporary file to store the sorted and unique URLs
     temp_file=$(mktemp)
     sort "$urls_file" | uniq > "$temp_file"
-    httpx -silent -mc 200,301,302,403 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 05
+    httpx -silent -mc 200,204,301,302,401,403,405,500,502,503,504 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 50
     rm -r "$temp_file"  # Remove the temporary file
 elif [ -n "$filename" ]; then
     sort "$urls_file" | uniq > "$temp_file"
-    httpx -silent -mc 200,301,302,403 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 05
+    httpx -silent -mc 200,204,301,302,401,403,405,500,502,503,504 -l "$temp_file" | nuclei -t "$home_dir/nuclei-templates" -es info -rl 50
     rm -r "$temp_file"  # Remove the temporary file
 fi
 
