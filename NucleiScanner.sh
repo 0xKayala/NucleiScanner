@@ -30,7 +30,7 @@ RATE_LIMIT=50
 
 # Help menu
 display_help() {
-    echo -e "NucleiScanner: A Powerful Automation Tool for Detecting Unknown Vulnerabilities in Web Applications\n"
+    echo -e "NucleiScanner: A Powerful Automation Tool for Web Vulnerabilities Scanning\n"
     echo "Usage: $0 [options]"
     echo "Options:"
     echo "  -h, --help              Display this help menu"
