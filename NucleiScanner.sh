@@ -138,7 +138,7 @@ collect_subdomains() {
     local target="$1"
     local output_file="$2"
     local validated_target=$(validate_input "$target") || return 1
-    echo -e "${BLUE}Collecting subdomains for $validated_target using Subfinder...${RESET}"
+    echo -e "${GREEN}Collecting subdomains for $validated_target...${RESET} using Subfinder"
     subfinder -d "$validated_target" -all -silent -o "$output_file"
 }
 
@@ -151,12 +151,12 @@ collect_urls() {
 
     log "INFO" "Starting URL collection for $validated_target..."
 
-    echo -e "${GREEN}Collecting URLs for $validated_target using ParamSpider...${RESET}"
+    echo -e "${GREEN}Collecting URLs for $validated_target...${RESET} using ParamSpider"
     python3 "$HOME_DIR/ParamSpider/paramspider.py" -d "$target" --exclude "$EXCLUDED_EXTENSIONS" --level high --quiet -o "$output_file.tmp" &&
     cat "$output_file.tmp" >> "$output_file" && rm -f "$output_file.tmp"
 
     if [ -s "$subdomain_file" ]; then
-        echo -e "${RED}Collecting URLs from subdomains using Gauplus...${RESET}"
+        echo -e "${GREEN}Collecting URLs from subdomains using Gauplus...${RESET}"
         cat "$subdomain_file" | gauplus -b "$EXCLUDED_EXTENSIONS" >> "$output_file"
     fi
 }
